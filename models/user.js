@@ -22,6 +22,25 @@ const userSchema = mongoose.Schema({
     profileImageURL: {
         type: String,
         default: '/images/default.png',
+    },
+    role: {
+        type: String,
+        enum: ['USER', 'ADMIN'],
+        default: 'USER',
     }
     
 })
+
+
+userSchema.pre('save', function(next) {
+    const user = this;                   // this means current user
+
+    if(!user.isModified('password')) return;
+
+    
+})
+
+
+const User = mongoose.model('user', userSchema);
+
+module.exports = User;
