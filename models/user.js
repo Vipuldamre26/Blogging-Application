@@ -29,18 +29,25 @@ const userSchema = mongoose.Schema({
         enum: ['USER', 'ADMIN'],
         default: 'USER',
     }
-    
+
 })
 
 
-userSchema.pre('save', function(next) {
+userSchema.pre('save', function (next) {
     const user = this;                   // this means current user
 
-    if(!user.isModified('password')) return;
+    if (!user.isModified('password')) return;
 
     const salt = randomBytes(16).toString();       // salt is a user secret key 
-    const hashedPassword = createHmac('sha256', salt).update(user.password).digest('hex');
-    
+    const hashedPassword = createHmac('sha256', salt)
+    .update(user.password)
+    .digest('hex');
+
+    this.salt = salt;
+    this.password = hashedPassword;
+
+    next();
+
 })
 
 
