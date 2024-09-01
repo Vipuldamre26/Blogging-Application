@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const { dbConnection } = require('./connection');
+const userRoute = require('./routes/user')
 
 const PORT = 8004;
 
@@ -32,6 +33,9 @@ app.set(express.json());
 app.get('/', (req, res) => {
     res.render('home');
 })
+
+
+app.use('/user', userRoute);
 
 
 app.listen(PORT, () => console.log(`Server started at PORT ${PORT}`));
