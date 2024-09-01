@@ -25,7 +25,7 @@ app.set('views', path.resolve("./views"))
 // Middlewares 
 
 app.set(express.json());
-
+app.use(express.urlencoded({ extended: false }));
 
 
 // Routes 
