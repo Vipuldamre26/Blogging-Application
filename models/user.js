@@ -37,7 +37,7 @@ const userSchema = mongoose.Schema({
 
 userSchema.pre('save', function (next) {
     const user = this;                   // this means current user
-
+    
     if (!user.isModified('password')) return;
 
     const salt = randomBytes(16).toString();       // salt is a user secret key 
@@ -57,6 +57,7 @@ userSchema.pre('save', function (next) {
 userSchema.static('matchPassword', async function(email, password){
     const user = await this.findOne({ email });
     if(!user) throw new Error('User not found');
+    
 
     const salt = user.salt;
     const hashedPassword = user.password;
