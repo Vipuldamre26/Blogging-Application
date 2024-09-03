@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const { dbConnection } = require('./connection');
-const userRoute = require('./routes/user')
+const userRoute = require('./routes/user');
 
 const PORT = 8004;
 
