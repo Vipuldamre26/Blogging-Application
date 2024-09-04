@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const { timeStamp } = require('node:console');
 const { createHmac, randomBytes } = require('node:crypto');
+const { createTokenForUser } = require('../services/authentication');
 
 
 const userSchema = mongoose.Schema({
@@ -68,7 +69,8 @@ userSchema.static('matchPassword', async function(email, password){
 
     if(hashedPassword !== userProvideHash) throw new Error('Incorrect password');
 
-    return user;
+    const token = createTokenForUser(user);
+    return token;
 
 })
 
