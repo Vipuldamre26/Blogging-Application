@@ -1,7 +1,9 @@
 const express = require('express');
 const path = require('path');
+const cookieParser = require('cookie-parser')
 const { dbConnection } = require('./connection');
 const userRoute = require('./routes/user');
+const { checkForAuthenticationCookie } = require('./middlewares/authentication');
 
 const PORT = 8004;
 
@@ -26,12 +28,16 @@ app.set('views', path.resolve("./views"))
 
 app.set(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(checkForAuthenticationCookie('token'));
 
 
 // Routes 
 
 app.get('/', (req, res) => {
-    res.render('home');
+    res.render('home', {
+        user: req.user,
+    });
 })
 
 
