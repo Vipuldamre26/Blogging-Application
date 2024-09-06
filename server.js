@@ -35,6 +35,7 @@ app.use(checkForAuthenticationCookie('token'));
 // Routes 
 
 app.get('/', (req, res) => {
+    
     res.render('home', {
         user: req.user,
     });
@@ -45,5 +46,4 @@ app.use('/user', userRoute);
 
 
 app.listen(PORT, () => console.log(`Server started at PORT ${PORT}`));
-
 

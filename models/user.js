@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { timeStamp } = require('node:console');
 const { createHmac, randomBytes } = require('node:crypto');
 const { createTokenForUser } = require('../services/authentication');
 
