@@ -3,6 +3,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser')
 const { dbConnection } = require('./connection');
 const userRoute = require('./routes/user');
+const blogRoute  = require('./routes/blog')
 const { checkForAuthenticationCookie } = require('./middlewares/authentication');
 
 const PORT = 8004;
@@ -43,6 +44,7 @@ app.get('/', (req, res) => {
 
 
 app.use('/user', userRoute);
+app.use('/blog', blogRoute);
 
 
 app.listen(PORT, () => console.log(`Server started at PORT ${PORT}`));
