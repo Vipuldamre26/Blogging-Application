@@ -20,6 +20,14 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 
+router.get('/show/:id', async (req, res) => {
+  const blog = await Blog.findById(req.params.id);
+  
+  return res.render('blog', {
+    user: req.user,
+    blog,
+  })
+})
 
 
 router.get('/add-new', (req, res) => {
@@ -39,7 +47,7 @@ router.post('/', upload.single('coverImage'), async (req, res) => {
     coverImageURL: `/uploads/${req.file.filename}`
   })
 
-  return res.redirect(`/blog/${blog._id}`);
+  return res.redirect(`/blog/show/${blog._id}`);
 })
 
 
