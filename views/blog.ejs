@@ -29,7 +29,7 @@
         <div class="container mt-4">
             <h1>Comments</h1>
             <% if (locals.user) { %>
-                <form action="/user/signin" method="post">
+                <form action="/blog/comment/<%= blog._id %>" method="post">
 
                     <div class="mb-3">
                         <input type="text" name="content" class="form-control" id="exampleInputEmail1"
@@ -38,6 +38,16 @@
                     </div>
                 </form>
                 <% } %>
+        </div>
+
+        <div class="mt-4">
+            <% comments.forEach(comment => { %>
+                <div>
+                    <span><%= comment.createdBy.fullName %></span> 
+                    : 
+                    <pre><%= comment.content %></pre>
+                </div>
+            <% }) %>
         </div>
 
         <%- include('./partials/scripts') %>
