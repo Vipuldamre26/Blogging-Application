@@ -21,7 +21,7 @@
         </div>
 
         <div class="container mt-4">
-            <img src="<%= blog.createdBy.profileImageURL %>" width="500px" alt="" />
+            <img src="<%= blog.createdBy.profileImageURL %>" width="50px" alt="" />
             <span>
                 <%= blog.createdBy.fullName %>
             </span>
@@ -42,10 +42,10 @@
 
         <div class="mt-4">
             <% comments.forEach(comment => { %>
-                <div>
-                    <span><%= comment.createdBy.fullName %></span> 
-                    : 
-                    <pre><%= comment.content %></pre>
+                <div class="container">
+                    <img src="<%= comment.createdBy.profileImageURL %>" alt="" width="50px">
+                    <%= comment.createdBy.fullName %>: 
+                    <span><%= comment.content %></span>
                 </div>
             <% }) %>
         </div>
