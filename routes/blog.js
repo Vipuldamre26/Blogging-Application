@@ -43,6 +43,11 @@ router.get('/add-new', (req, res) => {
 
 
 router.post('/comment/:blogId', async (req, res) => {
+  const content = req.body.content;
+  
+  if(!content){
+    return res.redirect(`/blog/${req.params.blogId}?error=Comment content is required`);
+  }
   await Comment.create({
     content: req.body.content,
     blogId: req.params.blogId,

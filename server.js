@@ -7,7 +7,7 @@ const blogRoute  = require('./routes/blog')
 const { checkForAuthenticationCookie } = require('./middlewares/authentication');
 const Blog = require('./models/blog');
 
-const PORT = 8004;
+const PORT = process.env.PORT || 8000;
 
 const app = express();
 
@@ -32,7 +32,7 @@ app.set(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(checkForAuthenticationCookie('token'));
-app.use(express.static(path.resolve('./public')))
+app.use(express.static(path.resolve('./public')));
 
 
 // Routes 
