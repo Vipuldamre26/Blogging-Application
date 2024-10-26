@@ -11,10 +11,12 @@ const PORT = process.env.PORT || 8000;
 
 const app = express();
 
+// const str = 'mongodb+srv://vipuldamre06:MongoDBblogApp@123@blogapp.evhqm.mongodb.net/';
+// const localStr = 'mongodb://127.0.0.1:27017/blog-app';
 
 // connection 
 
-dbConnection('mongodb://127.0.0.1:27017/blog-app')
+dbConnection('mongodb+srv://vipuldamre06:MongoDBblogApp@123@blogapp.evhqm.mongodb.net/')
 .then(() => console.log('MongoDB connected'));
 
 
@@ -38,11 +40,20 @@ app.use(express.static(path.resolve('./public')));
 // Routes 
 
 app.get('/', async (req, res) => {
-    const allBlogs = await Blog.find({});
-    res.render('home', {
-        user: req.user,
-        blogs: allBlogs,
-    });
+    try {
+        const allBlogs = await Blog.find({});
+        res.render('home', {
+            user: req.user,
+            blogs: allBlogs,
+        });
+    }
+    catch {
+        res.json({
+            success: false,
+            message: "Something error happened",
+        })
+    }
+
 })
 
 
