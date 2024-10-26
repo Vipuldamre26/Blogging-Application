@@ -7,16 +7,16 @@ const blogRoute  = require('./routes/blog')
 const { checkForAuthenticationCookie } = require('./middlewares/authentication');
 const Blog = require('./models/blog');
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 10000;
 
 const app = express();
 
-// const str = 'mongodb+srv://vipuldamre06:MongoDBblogApp@123@blogapp.evhqm.mongodb.net/';
+// const str = 'mongodb+srv://vipuldamre06:mongoDBblogApp@123@blogapp.evhqm.mongodb.net/';
 // const localStr = 'mongodb://127.0.0.1:27017/blog-app';
 
 // connection 
 
-dbConnection('mongodb+srv://vipuldamre06:MongoDBblogApp@123@blogapp.evhqm.mongodb.net/')
+dbConnection('mongodb+srv://vipuldamre06:mongoDBblogApp@123@blogapp.evhqm.mongodb.net/')
 .then(() => console.log('MongoDB connected'));
 
 
